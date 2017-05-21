@@ -2,6 +2,8 @@ package com.trevorgowing;
 
 import java.util.Objects;
 
+import static java.util.Optional.ofNullable;
+
 public class UrlStringBuilder {
 
     private final StringBuilder urlBuilder;
@@ -21,6 +23,18 @@ public class UrlStringBuilder {
 
     public static UrlStringBuilder basedUrlBuilder(String baseUrl) {
         return new UrlStringBuilder(baseUrl);
+    }
+
+    public UrlStringBuilder appendPath(String pathWithoutBackslash) {
+        String path = ofNullable(pathWithoutBackslash)
+                .orElseThrow(() -> new IllegalArgumentException("Path may not be null"));
+
+        if (!path.isEmpty()) {
+            urlBuilder.append("/");
+            urlBuilder.append(path.replaceAll("/", ""));
+        }
+
+        return this;
     }
 
     @Override
