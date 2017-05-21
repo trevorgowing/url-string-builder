@@ -31,3 +31,14 @@ UrlStringBuilder takes care of appending the appropriate preceding character, ei
 
 When you are done building your url just call `myUrlBuilder.toString()` to get your url string 
 `"http://trevorgowing.com/home?type=log&date=20170521`.
+
+## Null and empty [String](https://docs.oracle.com/javase/8/docs/api/java/lang/String.html) parameter handling
+
+All methods, namely: `basedUrlBuilder(String baseUrl)`, `appendPath(String path)` and 
+`appendQuery(String queryName, String queryValue)` handle `null` and empty 
+[String](https://docs.oracle.com/javase/8/docs/api/java/lang/String.html) parameters consistently.
+
+Any `null` parameters will result in an 
+[IllegalArgumentException](https://docs.oracle.com/javase/8/docs/api/java/lang/IllegalArgumentException.html).  
+Any empty [String](https://docs.oracle.com/javase/8/docs/api/java/lang/String.html) parameters will result in nothing 
+being appended.
