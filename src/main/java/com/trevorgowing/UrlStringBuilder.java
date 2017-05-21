@@ -14,8 +14,10 @@ public class UrlStringBuilder {
     }
 
     private UrlStringBuilder(String baseUrl) {
-        this();
-        urlBuilder.append(baseUrl);
+        baseUrl = ofNullable(baseUrl)
+                .orElseThrow(() -> new IllegalArgumentException("Base url may not be null"));
+
+        this.urlBuilder = new StringBuilder(baseUrl);
     }
 
     public static UrlStringBuilder emptyUrlBuilder() {

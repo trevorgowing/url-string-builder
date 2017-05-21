@@ -14,6 +14,12 @@ public class UrlStringBuilderTests {
 
     private static final String BASE_URL = "http://trevorgowing.com";
 
+    @Test(expected = IllegalArgumentException.class)
+    public void testConstructUrlStringBuilderWithNullBaseUrl_shouldThrowIllegalArgumentException() {
+        // Exercise SUT
+        basedUrlBuilder(null);
+    }
+
     @Test
     public void testConstructUrlStringBuilderWithBaseUrl_shouldSetUrlToBaseUrl() {
         // Exercise SUT
