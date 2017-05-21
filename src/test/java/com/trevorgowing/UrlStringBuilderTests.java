@@ -63,6 +63,81 @@ public class UrlStringBuilderTests {
         assertThat(actualUrl, is(pathWithBackslash));
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void testAppendQueryWithNullQueryName_shouldThrowIllegalArgumentException() {
+        // Set up fixture
+        String queryValue = "log";
+
+        // Exercise
+        emptyUrlBuilder().appendQuery(null, queryValue);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testAppendQueryWithNullQueryValue_shouldThrowIllegalArgumentException() {
+        // Set up fixture
+        String queryName = "log";
+
+        // Exercise SUT
+        emptyUrlBuilder().appendQuery(queryName, null);
+    }
+
+    @Test
+    public void testAppendQueryWithEmptyQueryName_shouldNotAppendQuery() {
+        // Set up fixture
+        String emptyQueryName = "";
+        String queryValue = "log";
+
+        // Exercise SUT
+        String actualUrl = emptyUrlBuilder().appendQuery(emptyQueryName, queryValue).toString();
+
+        // Verify behaviour
+        assertThat(actualUrl, isEmptyString());
+    }
+
+    @Test
+    public void testAppendQueryWithEmptyQueryValue_shouldNotAppendQuery() {
+        // Set up fixture
+        String queryName = "type";
+        String emptyQueryValue = "";
+
+        // Exercise SUT
+        String actualUrl = emptyUrlBuilder().appendQuery(queryName, emptyQueryValue).toString();
+
+        // Verify behaviour
+        assertThat(actualUrl, isEmptyString());
+    }
+
+    @Test
+    public void testAppendQueryWithValidFirstQuery_shouldAppendQueryWithLeadingQuestionMark() {
+        // Set up fixture
+        String queryName = "type";
+        String queryValue = "log";
+        String expectedUrl = "?" + queryName + "=" + queryValue;
+
+        // Exercise SUT
+        String actualUrl = emptyUrlBuilder().appendQuery(queryName, queryValue).toString();
+
+        // Verify behaviour
+        assertThat(actualUrl, is(expectedUrl));
+    }
+
+    @Test
+    public void testAppendQueryWithValidSecondQuery_shouldAppendQueryWithLeadingAmpersand() {
+        // Set up fixture
+        UrlStringBuilder urlStringBuilder = emptyUrlBuilder().appendQuery("type", "log");
+
+        String secondQueryName = "date";
+        String secondQueryValue = "20170521";
+
+        String expectedUrl = "?type=log&date=20170521";
+
+        // Exercise SUT
+        String actualUrl = urlStringBuilder.appendQuery(secondQueryName, secondQueryValue).toString();
+
+        // Very behaviour
+        assertThat(actualUrl, is(expectedUrl));
+    }
+
     @Test
     public void testEqualsWithDifferentUrls_shouldNotBeEqual() {
         // Set up fixture

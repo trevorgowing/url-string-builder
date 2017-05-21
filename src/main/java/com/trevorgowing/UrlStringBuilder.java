@@ -7,6 +7,7 @@ import static java.util.Optional.ofNullable;
 public class UrlStringBuilder {
 
     private final StringBuilder urlBuilder;
+    private boolean firstQuery = true;
 
     private UrlStringBuilder() {
         this.urlBuilder = new StringBuilder();
@@ -32,6 +33,21 @@ public class UrlStringBuilder {
         if (!path.isEmpty()) {
             urlBuilder.append("/");
             urlBuilder.append(path.replaceAll("/", ""));
+        }
+
+        return this;
+    }
+
+    public UrlStringBuilder appendQuery(String queryName, String queryValue) {
+        queryName = ofNullable(queryName)
+                .orElseThrow(() -> new IllegalArgumentException("Query name may not be null"));
+
+        queryValue = ofNullable(queryValue)
+                .orElseThrow(() ->  new IllegalArgumentException("Query value may not be null"));
+
+        if (!queryName.isEmpty() && !queryValue.isEmpty()) {
+            urlBuilder.append(firstQuery ? "?" : "&").append(queryName).append("=").append(queryValue);
+            firstQuery = false;
         }
 
         return this;
