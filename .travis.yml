@@ -1,6 +1,9 @@
 ---
 dist: trusty
 
+env:
+  - GRADLE_OPTS=-Dorg.gradle.daemon=false
+
 language: java
 
 jdk:
