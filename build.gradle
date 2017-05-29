@@ -21,6 +21,13 @@ jacocoTestReport {
     }
 }
 
+test {
+    testLogging {
+        events "failed"
+        exceptionFormat "full"
+    }
+}
+
 task sourcesJar(type: Jar, dependsOn: "classes") {
     from sourceSets.main.allJava
     classifier "sources"
