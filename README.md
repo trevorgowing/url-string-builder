@@ -1,4 +1,6 @@
-[![Build Status](https://travis-ci.org/trevorgowing/url-string-builder.svg?branch=master)](https://travis-ci.org/trevorgowing/url-string-builder)  
+[![Build Status](https://travis-ci.org/trevorgowing/url-string-builder.svg?branch=master)](https://travis-ci.org/trevorgowing/url-string-builder)
+[![codecov](https://codecov.io/gh/trevorgowing/url-string-builder/branch/master/graph/badge.svg)](https://codecov.io/gh/trevorgowing/url-string-builder)
+[ ![Download](https://api.bintray.com/packages/trevorgowing/maven/url-string-builder/images/download.svg) ](https://bintray.com/trevorgowing/maven/url-string-builder/_latestVersion)
 
 # Url String Builder
 
