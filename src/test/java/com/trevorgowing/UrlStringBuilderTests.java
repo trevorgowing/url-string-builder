@@ -163,6 +163,27 @@ public class UrlStringBuilderTests {
     }
 
     @Test
+    public void testEqualsWithSameObject_shouldBeEqual() {
+        // Set up fixture
+        UrlStringBuilder urlStringBuilder = emptyUrlBuilder();
+
+        // Verify behaviour
+        assertThat(urlStringBuilder.equals(urlStringBuilder), is(true));
+    }
+
+    @Test
+    public void testEqualsToNull_shouldNotBeEqual() {
+        // Verify behaviour
+        assertThat(emptyUrlBuilder().equals(null), is(false));
+    }
+
+    @Test
+    public void testEqualsWithObjectOfDifferentClass_shouldNotBeEqual() {
+        // Verify behaviour
+        assertThat(emptyUrlBuilder().equals(new Object()), is(false));
+    }
+
+    @Test
     public void testEqualsWithDifferentUrls_shouldNotBeEqual() {
         // Set up fixture
         UrlStringBuilder urlStringBuilderOne = basedUrlBuilder(BASE_URL);
