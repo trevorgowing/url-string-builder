@@ -42,7 +42,7 @@ publishing {
     publications {
         UrlStringBuilder(MavenPublication) {
             groupId "com.trevorgowing"
-            version "1.0.1"
+            version "1.1.0"
 
             from components.java
 
@@ -66,10 +66,10 @@ bintray {
         githubRepo = "trevorgowing/url-string-builder"
 
         version {
-            name = "1.0.1"
-            desc = "Include sources and javadoc for publishing to JCenter"
+            name = "1.1.0"
+            desc = "Added appendPath for int and long"
             released = new Date()
-            vcsTag = "v1.0.0"
+            vcsTag = "v1.1.0"
         }
     }
 }
