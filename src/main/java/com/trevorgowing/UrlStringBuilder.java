@@ -71,6 +71,28 @@ public class UrlStringBuilder {
     }
 
     /**
+     * Append the given path to this url.
+     *
+     * @param path The <code>int</code> path to append.
+     * @return This UrlStringBuilder.
+     */
+    public UrlStringBuilder appendPath(int path) {
+        urlBuilder.append("/").append(path);
+        return this;
+    }
+
+    /**
+     * Append the given path to this url.
+     *
+     * @param path The <code>long</code> path to append.
+     * @return This UrlStringBuilder.
+     */
+    public UrlStringBuilder appendPath(long path) {
+        urlBuilder.append("/").append(path);
+        return this;
+    }
+
+    /**
      * Append the given query to this url.
      *
      * If this is the first query to be appended a preceding {@code ?} will be prepended.

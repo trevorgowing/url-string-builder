@@ -45,7 +45,7 @@ public class UrlStringBuilderTests {
     }
 
     @Test
-    public void testAppendPathWithoutBackslash_shouldAppendPathWithExactlyOneBackslash() {
+    public void testAppendPathWithAStringPathExcludingABackslash_shouldAppendPathWithExactlyOneBackslash() {
         // Set up fixture
         String pathWithoutBackslash = "home";
         String expectedUrl = "/home";
@@ -58,7 +58,7 @@ public class UrlStringBuilderTests {
     }
 
     @Test
-    public void testAppendPathWithBackslash_shouldAppendPathWithExactlyOneBackslash() {
+    public void testAppendPathWithAStringIncludingABackslash_shouldAppendPathWithExactlyOneBackslash() {
         // Set up fixture
         String pathWithBackslash = "/home";
 
@@ -67,6 +67,24 @@ public class UrlStringBuilderTests {
 
         // Verify behaviour
         assertThat(actualUrl, is(pathWithBackslash));
+    }
+
+    @Test
+    public void testAppendPathWithInt_shouldAppendPath() {
+        // Exercise SUT
+        String actualUrl = emptyUrlBuilder().appendPath(1).toString();
+
+        // Verify behaviour
+        assertThat(actualUrl, is("/1"));
+    }
+
+    @Test
+    public void testAppendPathWithLong_shouldAppendPath() {
+        // Exercise SUT
+        String actualUrl = emptyUrlBuilder().appendPath(1L).toString();
+
+        // Verify behaviour
+        assertThat(actualUrl, is("/1"));
     }
 
     @Test(expected = IllegalArgumentException.class)
